@@ -1,569 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>💕 Valentine's Message 💕</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&family=Cormorant+Garamond:ital@0;1&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* Main Envelope View */
-        .envelope-view {
-            background: linear-gradient(135deg, #FFB6D9 0%, #FFC0CB 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: auto;
-            gap: 0;
-        }
-
-        .column1,
-        .column2 {
-            flex: none;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        .column2 {
-            position: relative;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 192, 203, 0.2));
-            border-radius: 0;
-        }
-
-        .container {
-            height: 100vh;
-            display: grid;
-            place-items: center;
-        }
-
-        .envelope-wrapper {
-            background-color: #FFF0F5;
-            box-sizing: 0 0 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .envelope {
-            position: relative;
-            width: 300px;
-            height: 230px;
-        }
-
-        .envelope::before {
-            content: "";
-            position: absolute;
-            z-index: 2;
-            border-top: 130px solid #FF69B4;
-            border-right: 150px solid transparent;
-            border-left: 150px solid transparent;
-            top: 0;
-            transform-origin: top;
-            transition: all 0.5s ease-in-out 0.7s;
-        }
-
-        .envelope::after {
-            content: "";
-            position: absolute;
-            z-index: 2;
-            border-top: 130px solid transparent;
-            border-right: 150px solid #FF69B4;
-            border-left: 150px solid #FF69B4;
-            border-bottom: 100px solid #FF69B4;
-            bottom: 0;
-        }
-
-        .letter {
-            position: absolute;
-            right: 20%;
-            bottom: 0;
-            width: 54%;
-            height: 80%;
-            background: #fff;
-            transition: all 1s ease-in-out;
-            padding: 20px 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-            color: #8B3A62;
-            font-size: 12px;
-            line-height: 1.6;
-            cursor: pointer;
-        }
-
-        .heart {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 15px;
-            height: 15px;
-            background: #FF1493;
-            z-index: 4;
-            transform: translate(-50%, -20%) rotate(45deg);
-            transition: transform 0.5s ease-in-out 1s;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-        }
-
-        .heart::before,
-        .heart::after {
-            content: "";
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: #FF1493;
-            border-radius: 50%;
-        }
-
-        .heart::before {
-            top: -7.5px;
-        }
-
-        .heart::after {
-            right: 7.5px;
-        }
-
-        .flap > .envelope::before {
-            z-index: 0;
-            transform: rotateX(180deg);
-            transition-duration: 0.5;
-        }
-
-        .flap > .envelope .letter {
-            bottom: 110px;
-            transform: scale(1.5);
-            transition-delay: 1.6s;
-            z-index: 2;
-        }
-
-        .flap > .heart {
-            transform: rotate(90deg);
-            transition-delay: 0.4s;
-        }
-
-        .separator-box {
-            width: 90%;
-            height: auto;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 20px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        h2 {
-            color: #8B3A62;
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin: 20px auto;
-        }
-
-        button {
-            margin-top: 10px;
-        }
-
-        .playAudio {
-            align-items: center;
-            background-color: #FFB6D9;
-            border: none;
-            border-radius: 25px;
-            box-sizing: border-box;
-            color: #fff;
-            cursor: pointer;
-            display: flex;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            height: 48px;
-            justify-content: center;
-            line-height: 24px;
-            padding: 0 25px;
-            text-align: center;
-            text-decoration: none;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            width: auto;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .playAudio:hover {
-            background-color: #FF69B4;
-            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .yesBTN {
-            align-items: center;
-            background: linear-gradient(135deg, #FF69B4, #FF1493);
-            border-radius: 25px;
-            border: none;
-            box-sizing: border-box;
-            color: #fff;
-            cursor: pointer;
-            display: inline-flex;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            height: 48px;
-            justify-content: center;
-            padding: 2px 32px;
-            text-align: center;
-            text-transform: none;
-            transition: all 0.3s ease;
-            user-select: none;
-            width: auto;
-            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
-            margin: 0 10px;
-        }
-
-        .yesBTN:hover {
-            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .noBTN {
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 25px;
-            border: 2px solid #FF69B4;
-            box-sizing: border-box;
-            color: #FF69B4;
-            cursor: pointer;
-            display: inline-flex;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            height: 48px;
-            justify-content: center;
-            padding: 2px 32px;
-            text-align: center;
-            text-transform: none;
-            transition: all 0.3s ease;
-            user-select: none;
-            width: auto;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
-            margin: 0 10px;
-        }
-
-        .noBTN:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Letter View */
-        .letter-view {
-            background: linear-gradient(135deg, #FFB6D9 0%, #FFC0CB 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .letter-container {
-            background: linear-gradient(135deg, #FFF0F5 0%, #FFF 100%);
-            max-width: 700px;
-            width: 100%;
-            padding: 60px 50px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            position: relative;
-            animation: slideIn 0.8s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .letter-container::before {
-            content: "💕";
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 60px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-20px); }
-        }
-
-        .letter-header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #FF69B4;
-            padding-bottom: 20px;
-        }
-
-        .letter-header h1 {
-            font-family: 'Playfair Display', serif;
-            color: #8B3A62;
-            font-size: 36px;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-
-        .letter-header p {
-            color: #FF69B4;
-            font-style: italic;
-            font-size: 14px;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .letter-body {
-            font-family: 'Cormorant Garamond', serif;
-            color: #8B3A62;
-            font-size: 18px;
-            line-height: 2;
-            margin-bottom: 30px;
-            text-align: justify;
-        }
-
-        .letter-body p {
-            margin-bottom: 20px;
-        }
-
-        .letter-signature {
-            text-align: right;
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-        }
-
-        .signature-name {
-            font-size: 24px;
-            color: #FF1493;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        .signature-hearts {
-            color: #FF1493;
-            font-size: 20px;
-            margin-top: 10px;
-        }
-
-        .back-button {
-            display: block;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .back-button button {
-            background: linear-gradient(135deg, #FF69B4, #FF1493);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            border: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
-        }
-
-        .back-button button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
-        }
-
-        .decoration {
-            text-align: center;
-            color: #FF69B4;
-            font-size: 20px;
-            margin: 30px 0;
-            letter-spacing: 10px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        @media (max-width: 600px) {
-            .letter-container {
-                padding: 40px 30px;
-            }
-
-            .letter-header h1 {
-                font-size: 28px;
-            }
-
-            .letter-body {
-                font-size: 16px;
-                line-height: 1.8;
-                text-align: left;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Envelope View -->
-    <div class="envelope-view" id="envelopeView">
-        <div class="wrapper">
-            <!-- Column 1 -->
-            <div class="column1">
-                <div class="container">
-                    <div class="envelope-wrapper">
-                        <div class="envelope">
-                            <div class="letter">
-                                <div class="text">
-                                    <strong>HELLO</strong>
-                                    <strong>FROM YOUR SECRET ADMIRER? HAHAHAHA</strong>
-                                    <p>scroll down hehe</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="heart"></div>
-                    </div>
+    <link rel="stylesheet" href="jam.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Column 1 -->
+      <div class="column1">
+        <div class="container">
+          <div class="envelope-wrapper">
+            <div class="envelope">
+              <div class="letter">
+                
+                <div class="text">
+                  <strong>HELLO</strong>
+                  <strong>FROM YOUR SECRET ADMIRER? HAHAHAHA</strong>
+                  <p>
+                   scroll down hehe
+                  </p>
                 </div>
+              </div>
             </div>
-
-            <!-- Column 2 -->
-            <div class="column2">
-                <div class="separator-box">
-                    <h2>✨ Would you accept my gift? ✨</h2>
-                    <img src="https://media.tenor.com/9A9NQV3RzSQAAAAm/meow-hs-meow-flowers.webp" alt="GIF" />
-                    <button class="playAudio" onclick="window.open('https://www.youtube.com/watch?v=e1mOmdykmwI', '_blank')">
-                        💕 Play Music 💕
-                    </button>
-                    <button class="yesBTN" onclick="showLetterView()">💕 Yes 💕</button>
-                    <button class="noBTN" id="noBTN">No</button>
-                </div>
-            </div>
+            <div class="heart"></div>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Letter View -->
-    <div class="letter-view hidden" id="letterView">
-        <div class="letter-container">
-            <div class="letter-header">
-                <h1>My Dearest Maze</h1>
-                <p>A Letter From My Heart</p>
-            </div>
-
-            <div class="letter-body">
-                <p>
-                    Hi Maze, it's been a while since we last talked, but I want you to know that I’ve 
-                     been trying things to make my feelings go away. I just don’t know why there’s 
-                     something that keeps pulling me back. Maybe I’m already attached. But even though 
-                     I’m attached, I still need to respect your feelings.
-
-                <p>
-                    I don’t even know why I suddenly got attached when I know it’s hard for me to find
-                     love. Maybe there’s something in you that I don’t see in other women. Maybe it’s
-                     because you are special. You know that I joined a competition, right? I’ve been 
-                     talking about it to you, how I wanted to join this competition but didn’t have the
-                     courage since last year. Maybe because of your advice, I built up my confidence. 
-                     That’s why you are also one of my inspirations for joining this competition. You 
-                     made me realize that maybe I shouldn’t mind the voices of everyone talking negatively.
-                </p>
-
-                <p>
-                    I’m truly inspired by you, and I just like the way you are. I remember that you taught
-                     me about science, and I really liked it because you insisted on teaching that topic to 
-                     me. You also taught me how to solve things. Maze, I just really like how you are so kind
-                     and honest—things that I cannot fully explain in words. There are things stuck in me 
-                     right now that I cannot fully express through this message, but I still hope that you 
-                     will accept this message. I’m really thankful for accepting this.
-                </p>
-
-                <div class="decoration">
-                    ~ 💕 ~ 💕 ~ 💕 ~
-                </div>
-
-                <p>
-                  I just want you to know that no matter what happens, I will always support you and wish 
-                    you the best. I hope we can continue to inspire each other and share experiences, even 
-                    if it’s just through small messages like this. You’ve made a real difference in my life,
-                    and I’ll always be grateful for that.
-                </p>
-
-                <p>
-                    Thank you for saying yes. Thank you for being mine, and for letting me be yours.
-                </p>
-
-                <div class="letter-signature">
-                    <p>With all my heart,</p>
-                    <div class="signature-name">Lance</div>
-                    <div class="signature-hearts">💕 💕 💕</div>
-                </div>
-            </div>
-
-            <div class="back-button">
-                <button onclick="backToEnvelope()">← Back to You</button>
-            </div>
+      <!-- Column 2 -->
+      <div class="column2">
+        <div class="separator-box">
+          <div class="audio-container" id="yt-container">
+            <iframe
+              id="yt-player"
+              width="0"
+              height="0"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <h2>✨ Would you accept my gift? ✨</h2>
+         <img
+            src="https://media.tenor.com/9A9NQV3RzSQAAAAm/meow-hs-meow-flowers.webp"
+            alt="GIF"
+          />
+          <button class="playAudio" id="playAudio" onclick="window.open('https://www.youtube.com/watch?v=e1mOmdykmwI', '_blank')">
+            💕 Play Music 💕
+          </button>
+          <button class="yesBTN" id="yesBTN" onclick="yesButton()">💕 Yes 💕</button>
+          <button class="noBTN" id="noBTN">No</button>
         </div>
+      </div>
     </div>
 
     <script type="text/javascript">
-        // Envelope opening animation
-        const envelope = document.querySelector(".envelope-wrapper");
-        envelope.addEventListener("click", () => {
-            envelope.classList.toggle("flap");
+      // Envelope opening animation
+      const envelope = document.querySelector(".envelope-wrapper");
+      envelope.addEventListener("click", () => {
+        envelope.classList.toggle("flap");
+      });
+      // YouTube Audio Control
+      let player = document.getElementById("yt-player");
+      // Music button opens YouTube in new tab
+      yesButton = () => {
+        window.location.href = "letter.html";
+      };
+      const moveRandomEl = (e) => {
+        e.style.position = "absolute";
+        e.style.top = Math.floor(Math.random() * 90 + 5) + "%";
+        e.style.left = Math.floor(Math.random() * 90 + 5) + "%";
+      };
+      const moveRandomBTN = document
+        .getElementById("noBTN")
+        .addEventListener("mouseenter", (e) => {
+          moveRandomEl(e.target);
         });
-
-        // Moving No button
-        const moveRandomEl = (e) => {
-            e.style.position = "absolute";
-            e.style.top = Math.floor(Math.random() * 90 + 5) + "%";
-            e.style.left = Math.floor(Math.random() * 90 + 5) + "%";
-        };
-
-        document.getElementById("noBTN").addEventListener("mouseenter", (e) => {
-            moveRandomEl(e.target);
-        });
-
-        // Switch between views
-        function showLetterView() {
-            document.getElementById("envelopeView").classList.add("hidden");
-            document.getElementById("letterView").classList.remove("hidden");
-            window.scrollTo(0, 0);
-        }
-
-        function backToEnvelope() {
-            document.getElementById("letterView").classList.add("hidden");
-            document.getElementById("envelopeView").classList.remove("hidden");
-            window.scrollTo(0, 0);
-        }
     </script>
-</body>
-</html> 
+  </body>
+</html>
